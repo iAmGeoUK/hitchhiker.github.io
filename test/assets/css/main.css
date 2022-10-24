@@ -280,7 +280,7 @@ input, select, textarea {
 
 		}
 
-		@media screen and (max-width: 480px) {
+		@media screen and (max-width: 75%) {
 
 			.container {
 				max-width: calc(100% - 3em);
@@ -531,7 +531,7 @@ input, select, textarea {
 					padding-top: 4em;
 				}
 
-		@media screen and (max-width: 1680px) {
+		@media screen and (max-width: 75%) {
 
 			.row {
 				display: flex;
@@ -776,7 +776,7 @@ input, select, textarea {
 
 		}
 
-		@media screen and (max-width: 1140px) {
+		@media screen and (max-width: 75%) {
 
 			.row {
 				display: flex;
@@ -1021,7 +1021,7 @@ input, select, textarea {
 
 		}
 
-		@media screen and (max-width: 980px) {
+		@media screen and (max-width: 75%) {
 
 			.row {
 				display: flex;
@@ -1266,7 +1266,7 @@ input, select, textarea {
 
 		}
 
-		@media screen and (max-width: 736px) {
+		@media screen and (max-width: 75%) {
 
 			.row {
 				display: flex;
@@ -1511,7 +1511,7 @@ input, select, textarea {
 
 		}
 
-		@media screen and (max-width: 480px) {
+		@media screen and (max-width: 75%) {
 
 			.row {
 				display: flex;
@@ -1756,7 +1756,7 @@ input, select, textarea {
 
 		}
 
-		@media screen and (max-width: 320px) {
+		@media screen and (max-width: 75%) {
 
 			.row {
 				display: flex;
@@ -2506,7 +2506,7 @@ input, select, textarea {
 				width: 100%;
 			}
 
-		@media screen and (max-width: 480px) {
+		@media screen and (max-width: 75%) {
 
 			ul.actions:not(.fixed) {
 				-moz-flex-direction: column;
