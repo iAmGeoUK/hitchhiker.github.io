@@ -244,19 +244,19 @@ input, select, textarea {
 	.container {
 		margin: 0 auto;
 		max-width: calc(100% - 4em);
-		width: 60em;
+		width: 75%;
 	}
 
 		.container.xsmall {
-			width: 15em;
+			width: 75%;
 		}
 
 		.container.small {
-			width: 30em;
+			width: 75%;
 		}
 
 		.container.medium {
-			width: 45em;
+			width: 75%;
 		}
 
 		.container.large {
@@ -271,7 +271,7 @@ input, select, textarea {
 			width: 100%;
 		}
 
-		@media screen and (max-width: 980px) {
+		@media screen and (max-width: 75%;) {
 
 			.container {
 				max-width: 100% !important;
