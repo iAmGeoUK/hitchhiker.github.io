@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- browser icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7L5GY1Y2HR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7L5GY1Y2HR');
+</script>
+    <title>Hitchhiker's PNB Checker</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        select, input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-bottom: 1px solid black;
+            background-color: transparent;
+            color: black;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PNB Checker tool</h1>
+        <p>Click the calendar icon to select your <b>arrival</b> time (actual) and <b>scheduled</b> departure time to verify your PNB for your location (either <i>pass</i> or <i>fail</i).</p>
+        
+        <form id="time-form">
+            Arrival time: <input type="datetime-local" id="start-time">
+            Depart time: <input type="datetime-local" id="end-time">
+            Location: 
+            <select id="location">
+                <option value="Abbey Wood">Abbey Wood</option>
+                <option value="Gidea Park Station">Gidea Park Station</option>
+                <option value="Gidea Park Sidings">Gidea Park Sidings</option>
+                <option value="Liverpool St">Liverpool St</option>
+                <option value="Maidenhead (Cincom)">Maidenhead (Cincom)</option>
+                <option value="Maidenhead (CS)">Maidenhead (CS)</option>
+                <option value="OCC">OCC</option>
+                <option value="Paddington GW">Paddington GW</option>
+                <option value="Paddington LL">Paddington LL</option>
+                <option value="Plumstead">Plumstead</option>
+                <option value="Shenfield">Shenfield</option>
+                <option value="Ealing Broadway">Ealing Broadway</option>
+            </select>
+            <button type="button" onclick="checkTime()">Check Time</button>
+            <p id="message"></p>
+        </form>
+    </div>
+
+    <script>
+        function checkTime() {
+            const startTime = new Date(document.getElementById("start-time").value);
+            const endTime = new Date(document.getElementById("end-time").value);
+            const location = document.getElementById("location").value;
+
+            const timeDifference = endTime - startTime;
+
+            const times = {
+                "Abbey Wood": 47,
+                "Ealing Broadway": 44,
+                "Gidea Park Station": 62,
+                "Gidea Park Sidings": 42,
+                "Liverpool St": 46,
+                "Maidenhead (Cincom)": 48,
+                "Maidenhead (CS)": 47,
+                "OCC": 57,
+                "Paddington GW": 48,
+                "Paddington LL": 42,
+                "Plumstead": 57,
+                "Shenfield": 47,
+                "Shenfield CS": 49
+            };
+
+            const specifiedValue = times[location] * 60000;
+
+            if (timeDifference < specifiedValue) {
+                const newEndTime = new Date(startTime.getTime() + specifiedValue);
+                document.getElementById("message").innerHTML = `Your break at ${location} is <b>less</b> than ${times[location]} minutes. <br>PNB STATUS: <span class="fail">FAILED</span>, <u>Contact Control</u>. <br><b>YOU ARE UNABLE TO DRIVE UNTIL: ${newEndTime.toLocaleString()}</b>. <br>Minimum PNB Time at this location: ${times[location]} minutes.`;
+            } else {
+                document.getElementById("message").innerHTML = `Your break at ${location} is <b>equal to or greater than</b> ${times[location]} minutes. <br>PNB STATUS: <span class="pass">Pass</span> Go drive your train. <br>Minimum PNB Time at this location: ${times[location]} minutes.`;
+            }
+        }
+    </script>
+<br> <center>Noticed any errors with timings? Message me.
+</body>
+</html>
