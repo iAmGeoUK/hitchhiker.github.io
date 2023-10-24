@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times Tables Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .question {
+            margin-top: 20px;
+        }
+
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 5px 15px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Times Tables Quiz</h1>
+        <div class="question">
+            <p id="questionText"></p>
+            <input type="number" id="userAnswer" placeholder="Your answer">
+            <button id="checkAnswer">Check</button>
+        </div>
+        <div id="result" class="hidden"></div>
+    </div>
+    <script>
+        const questionText = document.getElementById("questionText");
+        const userAnswerInput = document.getElementById("userAnswer");
+        const checkAnswerButton = document.getElementById("checkAnswer");
+        const resultMessage = document.getElementById("result");
+
+        function generateQuestion() {
+            const num1 = Math.floor(Math.random() * 12) + 1;
+            const num2 = Math.floor(Math.random() * 12) + 1;
+            const correctAnswer = num1 * num2;
+
+            questionText.textContent = `What is ${num1} x ${num2}?`;
+            userAnswerInput.value = "";
+            resultMessage.textContent = "";
+            userAnswerInput.focus();
+            userAnswerInput.select();
+
+            checkAnswerButton.onclick = () => {
+                const userAnswer = parseInt(userAnswerInput.value);
+                if (userAnswer === correctAnswer) {
+                    resultMessage.textContent = "Correct!";
+                } else {
+                    resultMessage.textContent = `Incorrect. The correct answer is ${correctAnswer}.`;
+                }
+                generateQuestion(); // Generate the next question
+            };
+        }
+
+        generateQuestion();
+    </script>
+</body>
+</html>
