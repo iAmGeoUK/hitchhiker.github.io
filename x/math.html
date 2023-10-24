@@ -26,6 +26,9 @@
 
         .question {
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         input[type="number"] {
@@ -33,6 +36,11 @@
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
+        }
+
+        #correct, #incorrect {
+            font-size: 16px;
+            font-weight: bold;
         }
 
         button {
@@ -46,8 +54,35 @@
 
         #result {
             margin-top: 20px;
-            color: #ff0000;
             font-weight: bold;
+        }
+
+        #message {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        #correct {
+            color: green;
+        }
+
+        #incorrect {
+            color: red;
+        }
+
+        #nextButton {
+            margin-top: 20px;
+        }
+
+        #points {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #correctAnswer {
+            margin-top: 10px;
+            font-size: 16px;
         }
 
         .hidden {
@@ -67,41 +102,125 @@
         <div class="question">
             <p id="questionText"></p>
             <input type="number" id="userAnswer" placeholder="Your answer">
+            <div id="correctAnswer" class="hidden"></div>
+            <div>
+                <div id="correct" class="hidden"></div>
+                <div id="incorrect" class="hidden"></div>
+            </div>
             <button id="checkAnswer">Check</button>
         </div>
         <div id="result" class="hidden"></div>
-        <div id="version">Version: 1.0</div>
+        <button id="nextButton" class="hidden">Next</button>
+        <div id="points">Correct: 0 | Incorrect: 0</div>
+        <div id="version">Version: 12.0</div>
     </div>
     <script>
         const questionText = document.getElementById("questionText");
         const userAnswerInput = document.getElementById("userAnswer");
+        const correctAnswerText = document.getElementById("correctAnswer");
+        const correctText = document.getElementById("correct");
+        const incorrectText = document.getElementById("incorrect");
         const checkAnswerButton = document.getElementById("checkAnswer");
         const resultMessage = document.getElementById("result");
-    const versionText = document.getElementById("version");
+        const nextButton = document.getElementById("nextButton");
+        const pointsElement = document.getElementById("points");
+        const versionText = document.getElementById("version");
+
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let currentQuestion;
+        let consecutiveFailures = 0;
+
+        function updatePoints() {
+            pointsElement.textContent = `Correct: ${correctCount} | Incorrect: ${incorrectCount}`;
+        }
+
+        function showCorrectMessage() {
+            correctText.textContent = "Correct!";
+            correctText.id = "correct";
+            correctText.classList.remove("hidden");
+        }
+
+        function showIncorrectMessage() {
+            incorrectText.textContent = "Incorrect";
+            incorrectText.id = "incorrect";
+            incorrectText.classList.remove("hidden");
+        }
+
+        function showCorrectAnswer() {
+            correctAnswerText.textContent = `Correct answer: ${currentQuestion.correctAnswer}`;
+            correctAnswerText.classList.remove("hidden");
+        }
+
+        function clearMessages() {
+            correctText.textContent = "";
+            correctText.classList.add("hidden");
+            incorrectText.textContent = "";
+            incorrectText.classList.add("hidden");
+            correctAnswerText.textContent = "";
+            correctAnswerText.classList.add("hidden");
+        }
 
         function generateQuestion() {
             const num1 = Math.floor(Math.random() * 12) + 1;
             const num2 = Math.floor(Math.random() * 12) + 1;
-            const correctAnswer = num1 * num2;
+            currentQuestion = {
+                num1,
+                num2,
+                correctAnswer: num1 * num2
+            };
 
-            questionText.textContent = `What is ${num1} x ${num2}?`;
+            questionText.textContent = `What is ${currentQuestion.num1} x ${currentQuestion.num2}?`;
             userAnswerInput.value = "";
             resultMessage.textContent = "";
+            clearMessages();
             userAnswerInput.focus();
             userAnswerInput.select();
 
             checkAnswerButton.onclick = () => {
                 const userAnswer = parseInt(userAnswerInput.value);
-                if (userAnswer === correctAnswer) {
-                    resultMessage.textContent = "Correct!";
+                if (userAnswer === currentQuestion.correctAnswer) {
+                    showCorrectMessage();
+                    consecutiveFailures = 0;
+                    correctCount++;
                 } else {
-                    resultMessage.textContent = `Incorrect. The correct answer is ${correctAnswer}.`;
+                    showIncorrectMessage();
+                    showCorrectAnswer();
+                    consecutiveFailures++;
+                    incorrectCount++;
                 }
-                generateQuestion(); // Generate the next question
+                updatePoints();
+                nextButton.classList.remove("hidden");
+                checkAnswerButton.disabled = true;
+            };
+
+            nextButton.onclick = () => {
+                questionText.textContent = "";
+                userAnswerInput.value = "";
+                resultMessage.textContent = "";
+                clearMessages();
+                nextButton.classList.add("hidden");
+                checkAnswerButton.disabled = false;
+                generateNextQuestion();
             };
         }
 
+        function generateNextQuestion() {
+            if (consecutiveFailures >= 2) {
+                questionText.textContent = `What is ${currentQuestion.num1} x ${currentQuestion.num2}?`;
+                userAnswerInput.value = "";
+                resultMessage.textContent = "";
+                clearMessages();
+                userAnswerInput.focus();
+                userAnswerInput.select();
+                consecutiveFailures = 0;
+            } else {
+                generateQuestion();
+            }
+        }
+
         generateQuestion();
+        updatePoints();
     </script>
 </body>
 </html>
