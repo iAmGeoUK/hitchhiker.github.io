@@ -28,7 +28,7 @@ async function fetchDataFromCSV() {
 function filterDataByTab(data, headerRow, tabName) {
     // Find the index of the "tab" column (assuming it's the first column).
     const tabIndex = headerRow.indexOf('tab');
-    
+
     if (tabIndex === -1) {
         return [];
     }
@@ -43,20 +43,53 @@ function filterDataByTab(data, headerRow, tabName) {
 }
 
 function findNearestTime(data, headerRow) {
-    // Implement your logic to find the nearest time in the filtered data.
-    // You need to parse the data and compare it with the current date and day.
-    // If you don't find a suitable time, return null to indicate that the time wasn't found.
+    // Assuming 'dep' is the header for the departure time and 'day' is the header for the day.
+    const depIndex = headerRow.indexOf('dep');
+    const dayIndex = headerRow.indexOf('day');
 
-    // For demonstration, here's a simple example:
-    for (let i = 1; i < data.length; i++) {
-        const row = data[i].split(',');
-        const time = row[2]; // Assuming the time is in the third column (index 2).
-        // Implement your comparison logic here to find the nearest time.
-        // If you find a suitable time, return it.
+    if (depIndex === -1 || dayIndex === -1) {
+        return null; // Headers not found in the CSV file.
     }
 
-    // If no suitable time is found, return null.
-    return null;
+    const currentTime = new Date();
+    const currentDay = getCurrentDay(); // Implement your logic to determine the current day.
+
+    let nearestTime = null;
+    let nearestTimeDiff = Number.MAX_VALUE;
+
+    for (let i = 1; i < data.length; i++) {
+        const row = data[i].split(',');
+        const depTime = row[depIndex];
+        const day = row[dayIndex];
+
+        // Compare the day to the current day.
+        if (day === currentDay) {
+            // Calculate the time difference with the current time.
+            const timeDiff = Math.abs(getTimeDifference(depTime, currentTime));
+
+            if (timeDiff < nearestTimeDiff) {
+                nearestTimeDiff = timeDiff;
+                nearestTime = depTime;
+            }
+        }
+    }
+
+    return nearestTime;
+}
+
+function getCurrentDay() {
+    // Implement your logic to determine the current day (Su, SX, SO).
+    // Example: const currentDay = new Date().getDay();
+    // Then map it to 'Su', 'SX', 'SO'.
+    return 'Su'; // For demonstration.
+}
+
+function getTimeDifference(time1, time2) {
+    // Implement a function to calculate the time difference.
+    // You may need to parse the time strings and calculate the difference.
+    // For this example, you can return the time difference in minutes.
+
+    return Math.abs(time1.getTime() - time2.getTime());
 }
 
 function displayData(data) {
