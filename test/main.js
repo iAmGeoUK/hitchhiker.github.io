@@ -13,52 +13,39 @@ async function fetchDataFromCSV() {
     // Remove empty lines
     const validRows = rows.filter(row => row.trim() !== "");
 
-    // Implement your logic to find the nearest time within the CSV data.
-    const nearestTime = findNearestTime(validRows);
+    // Implement your logic to extract all times under the 'Dep' heading.
+    const times = extractDepTimes(validRows);
 
-    // Display data or an error message on the website
-    if (nearestTime) {
-        displayData(nearestTime);
+    // Display the times on the website
+    if (times.length > 0) {
+        displayDepTimes(times);
     } else {
         displayError();
     }
 }
 
-function findNearestTime(data) {
-    const currentTime = new Date();
-    const currentHour = currentTime.getHours();
-    const currentMinute = currentTime.getMinutes();
-
-    let nearestTime = null;
-    let nearestTimeDiff = Number.MAX_VALUE;
+function extractDepTimes(data) {
+    const depTimes = [];
 
     for (let i = 0; i < data.length; i++) {
         const row = data[i].split(',');
-        const timeParts = row[0].split(':');
-        const depHour = parseInt(timeParts[0], 10);
-        const depMinute = parseInt(timeParts[1], 10);
-
-        // Calculate the time difference with the current time.
-        const timeDiff = Math.abs((depHour * 60 + depMinute) - (currentHour * 60 + currentMinute));
-
-        if (timeDiff < nearestTimeDiff) {
-            nearestTimeDiff = timeDiff;
-            nearestTime = depHour + ':' + (depMinute < 10 ? '0' : '') + depMinute;
+        if (row[0]) { // Assuming the 'Dep' column is the first column
+            depTimes.push(row[0]);
         }
     }
 
-    return nearestTime;
+    return depTimes;
 }
 
-function displayData(nearestTime) {
+function displayDepTimes(times) {
     const csvDataElement = document.getElementById("csvData");
-    csvDataElement.textContent = `Dep: ${nearestTime}`;
+    csvDataElement.textContent = `Dep Times: ${times.join(', ')}`;
     csvDataElement.style.color = 'red'; // Set text color to red
 }
 
 function displayError() {
     const csvDataElement = document.getElementById("csvData");
-    csvDataElement.textContent = 'Error: Time not found.';
+    csvDataElement.textContent = 'Error: No times found.';
     csvDataElement.style.color = 'red'; // Set text color to red
 }
 
