@@ -29,8 +29,8 @@ function extractDepTimes(data) {
 
     for (let i = 0; i < data.length; i++) {
         const row = data[i].split(',');
-        if (row[0]) { // Assuming the 'Dep' column is the first column
-            depTimes.push(row[0]);
+        if (row[2]) { // Use the third column for 'Dep' times
+            depTimes.push(row[2]);
         }
     }
 
