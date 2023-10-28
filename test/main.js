@@ -9,13 +9,13 @@ async function fetchDataFromCSV() {
     const csvData = await response.text();
 
     const rows = csvData.split('\n');
-    const headerRow = rows[0].split(',');
+    
+    // Remove empty lines
+    const validRows = rows.filter(row => row.trim() !== "");
 
-    // Filter the data based on the tab (in this case, "output")
-    const filteredData = filterDataByTab(rows, headerRow, 'output');
-
-    // Implement your logic to find the nearest time within the filtered data.
-    const nearestTime = findNearestTime(filteredData, headerRow);
+    // Implement your logic to find the nearest time within the CSV data.
+    const day = getCurrentDay();
+    const nearestTime = findNearestTime(validRows, day);
 
     // Display data or an error message on the website
     if (nearestTime) {
@@ -25,47 +25,20 @@ async function fetchDataFromCSV() {
     }
 }
 
-function filterDataByTab(data, headerRow, tabName) {
-    // Find the index of the "tab" column (assuming it's the first column).
-    const tabIndex = headerRow.indexOf('tab');
-
-    if (tabIndex === -1) {
-        return [];
-    }
-
-    // Filter the data to include only rows with the specified tabName.
-    const filteredData = data.filter(row => {
-        const rowData = row.split(',');
-        return rowData[tabIndex] === tabName;
-    });
-
-    return filteredData;
-}
-
-function findNearestTime(data, headerRow) {
-    // Assuming 'dep' is the header for the departure time and 'day' is the header for the day.
-    const depIndex = headerRow.indexOf('Dep');
-    const dayIndex = headerRow.indexOf('Day');
-
-    if (depIndex === -1 || dayIndex === -1) {
-        return null; // Headers not found in the CSV file.
-    }
-
+function findNearestTime(data, day) {
     const currentTime = new Date();
-    const currentDay = getCurrentDay(); // Implement your logic to determine the current day.
 
     let nearestTime = null;
     let nearestTimeDiff = Number.MAX_VALUE;
 
-    for (let i = 1; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         const row = data[i].split(',');
-        const depTime = row[depIndex];
-        const day = row[dayIndex];
+        const depTime = new Date(`2023-10-28T${row[0]}`);
+        const rowDay = row[1];
 
-        // Compare the day to the current day.
-        if (day === currentDay) {
+        if (rowDay === day) {
             // Calculate the time difference with the current time.
-            const timeDiff = Math.abs(getTimeDifference(depTime, currentTime));
+            const timeDiff = Math.abs(depTime - currentTime);
 
             if (timeDiff < nearestTimeDiff) {
                 nearestTimeDiff = timeDiff;
@@ -79,22 +52,14 @@ function findNearestTime(data, headerRow) {
 
 function getCurrentDay() {
     // Implement your logic to determine the current day (Su, SX, SO).
-    // Example: const currentDay = new Date().getDay();
-    // Then map it to 'Su', 'SX', 'SO'.
-    return 'Su'; // For demonstration.
+    // For this example, we'll assume it's "SX" (weekday).
+    return "SX";
 }
 
-function getTimeDifference(time1, time2) {
-    // Implement a function to calculate the time difference.
-    // You may need to parse the time strings and calculate the difference.
-    // For this example, you can return the time difference in minutes.
-
-    return Math.abs(time1.getTime() - time2.getTime());
-}
-
-function displayData(data) {
+function displayData(nearestTime) {
     const csvDataElement = document.getElementById("csvData");
-    csvDataElement.textContent = `Dep: ${data.Dep}, Arr: ${data.Arr}, Head: ${data.Head}, Loc: ${data.Loc}`;
+    const depTimeFormatted = nearestTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    csvDataElement.textContent = `Dep: ${depTimeFormatted}`;
     csvDataElement.style.color = 'red'; // Set text color to red
 }
 
