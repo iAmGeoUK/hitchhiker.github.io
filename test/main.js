@@ -26,24 +26,24 @@ async function fetchDataFromCSV() {
 
 function findNearestTime(data) {
     const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
 
     let nearestTime = null;
     let nearestTimeDiff = Number.MAX_VALUE;
 
     for (let i = 0; i < data.length; i++) {
         const row = data[i].split(',');
-        const depTime = new Date(`2023-10-28T${row[0]}`);
-        
-        // Remove seconds from the current time and the departure time.
-        currentTime.setSeconds(0);
-        depTime.setSeconds(0);
+        const timeParts = row[0].split(':');
+        const depHour = parseInt(timeParts[0], 10);
+        const depMinute = parseInt(timeParts[1], 10);
 
         // Calculate the time difference with the current time.
-        const timeDiff = Math.abs(depTime - currentTime);
+        const timeDiff = Math.abs((depHour * 60 + depMinute) - (currentHour * 60 + currentMinute));
 
         if (timeDiff < nearestTimeDiff) {
             nearestTimeDiff = timeDiff;
-            nearestTime = depTime;
+            nearestTime = depHour + ':' + (depMinute < 10 ? '0' : '') + depMinute;
         }
     }
 
@@ -52,8 +52,7 @@ function findNearestTime(data) {
 
 function displayData(nearestTime) {
     const csvDataElement = document.getElementById("csvData");
-    const depTimeFormatted = nearestTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    csvDataElement.textContent = `Dep: ${depTimeFormatted}`;
+    csvDataElement.textContent = `Dep: ${nearestTime}`;
     csvDataElement.style.color = 'red'; // Set text color to red
 }
 
