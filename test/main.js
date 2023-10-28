@@ -14,11 +14,11 @@ async function fetchDataFromCSV() {
     const validRows = rows.filter(row => row.trim() !== "");
 
     // Implement your logic to extract all times under the 'Dep' heading.
-    const times = extractDepTimes(validRows);
+    const depTimes = extractDepTimes(validRows);
 
     // Display the times on the website
-    if (times.length > 0) {
-        displayDepTimes(times);
+    if (depTimes.length > 0) {
+        displayDepTimes(depTimes);
     } else {
         displayError();
     }
@@ -27,10 +27,10 @@ async function fetchDataFromCSV() {
 function extractDepTimes(data) {
     const depTimes = [];
 
-    for (let i = 0; i < data.length; i++) {
-        const row = data[i].split(',');
-        if (row[2]) { // Use the third column for 'Dep' times
-            depTimes.push(row[2]);
+    for (let i = 1; i < data.length; i++) {
+        const row = data[i].trim();
+        if (row) {
+            depTimes.push(row);
         }
     }
 
