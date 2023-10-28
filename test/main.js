@@ -11,8 +11,11 @@ async function fetchDataFromCSV() {
     const rows = csvData.split('\n');
     const headerRow = rows[0].split(',');
 
-    // Implement your logic to parse the CSV data and find the nearest time.
-    const nearestTime = findNearestTime(rows, headerRow);
+    // Filter the data based on the tab (in this case, "output")
+    const filteredData = filterDataByTab(rows, headerRow, 'output');
+
+    // Implement your logic to find the nearest time within the filtered data.
+    const nearestTime = findNearestTime(filteredData, headerRow);
 
     // Display data or an error message on the website
     if (nearestTime) {
@@ -22,11 +25,37 @@ async function fetchDataFromCSV() {
     }
 }
 
-function findNearestTime(data, headerRow) {
-    // Implement your logic to find the nearest time in the CSV data.
-    // You'll need to parse the data and compare it with the current date and day.
+function filterDataByTab(data, headerRow, tabName) {
+    // Find the index of the "tab" column (assuming it's the first column).
+    const tabIndex = headerRow.indexOf('tab');
+    
+    if (tabIndex === -1) {
+        return [];
+    }
 
-    // For demonstration, return null to indicate an error.
+    // Filter the data to include only rows with the specified tabName.
+    const filteredData = data.filter(row => {
+        const rowData = row.split(',');
+        return rowData[tabIndex] === tabName;
+    });
+
+    return filteredData;
+}
+
+function findNearestTime(data, headerRow) {
+    // Implement your logic to find the nearest time in the filtered data.
+    // You need to parse the data and compare it with the current date and day.
+    // If you don't find a suitable time, return null to indicate that the time wasn't found.
+
+    // For demonstration, here's a simple example:
+    for (let i = 1; i < data.length; i++) {
+        const row = data[i].split(',');
+        const time = row[2]; // Assuming the time is in the third column (index 2).
+        // Implement your comparison logic here to find the nearest time.
+        // If you find a suitable time, return it.
+    }
+
+    // If no suitable time is found, return null.
     return null;
 }
 
