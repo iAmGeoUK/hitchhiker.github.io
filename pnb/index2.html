@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- browser icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L5GY1Y2HR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-7L5GY1Y2HR');
+    </script>
+    <title>Hitchhiker's PNB Checker</title>
+    <style>
+        /* Your CSS styles go here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PNB Checker tool</h1>
+        <p>Select your <b>arrival</b> time (actual) and <b>scheduled</b> departure time to verify your PNB for your location (either <i>pass</i> or <i>fail</i).</p>
+
+        <form id="time-form">
+            Arrival time: <input type="datetime-local" id="start-time">
+            Depart time: <input type="datetime-local" id="end-time">
+            Location:
+            <select id="location">
+                <option value="Abbey Wood">Abbey Wood</option>
+                <!-- Add other location options here -->
+            </select>
+            <button type="button" onclick="checkTime()">Check Time</button>
+            <p id="message"></p>
+        </form>
+    </div>
+
+    <!-- Include your JavaScript file here -->
+    <script src="script.js"></script>
+
+    <br>
+    <center>Noticed any errors with timings? Message me.
+</body>
+</html>
