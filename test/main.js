@@ -9,13 +9,12 @@ async function fetchDataFromCSV() {
     const csvData = await response.text();
 
     const rows = csvData.split('\n');
-    
+
     // Remove empty lines
     const validRows = rows.filter(row => row.trim() !== "");
 
     // Implement your logic to find the nearest time within the CSV data.
-    const day = getCurrentDay();
-    const nearestTime = findNearestTime(validRows, day);
+    const nearestTime = findNearestTime(validRows);
 
     // Display data or an error message on the website
     if (nearestTime) {
@@ -25,7 +24,7 @@ async function fetchDataFromCSV() {
     }
 }
 
-function findNearestTime(data, day) {
+function findNearestTime(data) {
     const currentTime = new Date();
 
     let nearestTime = null;
@@ -34,26 +33,21 @@ function findNearestTime(data, day) {
     for (let i = 0; i < data.length; i++) {
         const row = data[i].split(',');
         const depTime = new Date(`2023-10-28T${row[0]}`);
-        const rowDay = row[1];
+        
+        // Remove seconds from the current time and the departure time.
+        currentTime.setSeconds(0);
+        depTime.setSeconds(0);
 
-        if (rowDay === day) {
-            // Calculate the time difference with the current time.
-            const timeDiff = Math.abs(depTime - currentTime);
+        // Calculate the time difference with the current time.
+        const timeDiff = Math.abs(depTime - currentTime);
 
-            if (timeDiff < nearestTimeDiff) {
-                nearestTimeDiff = timeDiff;
-                nearestTime = depTime;
-            }
+        if (timeDiff < nearestTimeDiff) {
+            nearestTimeDiff = timeDiff;
+            nearestTime = depTime;
         }
     }
 
     return nearestTime;
-}
-
-function getCurrentDay() {
-    // Implement your logic to determine the current day (Su, SX, SO).
-    // For this example, we'll assume it's "SX" (weekday).
-    return "SX";
 }
 
 function displayData(nearestTime) {
