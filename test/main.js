@@ -13,39 +13,40 @@ async function fetchDataFromCSV() {
     // Remove empty lines
     const validRows = rows.filter(row => row.trim() !== "");
 
-    // Implement your logic to extract all times under the 'Dep' heading.
-    const depTimes = extractDepTimes(validRows);
+    // Implement your logic to extract all fields under index 2.
+    const fieldValues = extractFields(validRows, 2);
 
-    // Display the times on the website
-    if (depTimes.length > 0) {
-        displayDepTimes(depTimes);
+    // Display the field values on the website
+    if (fieldValues.length > 0) {
+        displayFieldValues(fieldValues);
     } else {
         displayError();
     }
 }
 
-function extractDepTimes(data) {
-    const depTimes = [];
+function extractFields(data, columnIndex) {
+    const fieldValues = [];
 
     for (let i = 1; i < data.length; i++) {
         const row = data[i].trim();
-        if (row) {
-            depTimes.push(row);
+        const columns = row.split(',');
+        if (columns[columnIndex]) {
+            fieldValues.push(columns[columnIndex]);
         }
     }
 
-    return depTimes;
+    return fieldValues;
 }
 
-function displayDepTimes(times) {
+function displayFieldValues(values) {
     const csvDataElement = document.getElementById("csvData");
-    csvDataElement.textContent = `Dep Times: ${times.join(', ')}`;
+    csvDataElement.textContent = `Field Values: ${values.join(', ')}`;
     csvDataElement.style.color = 'red'; // Set text color to red
 }
 
 function displayError() {
     const csvDataElement = document.getElementById("csvData");
-    csvDataElement.textContent = 'Error: No times found.';
+    csvDataElement.textContent = 'Error: No values found.';
     csvDataElement.style.color = 'red'; // Set text color to red
 }
 
