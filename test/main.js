@@ -44,8 +44,8 @@ function filterDataByTab(data, headerRow, tabName) {
 
 function findNearestTime(data, headerRow) {
     // Assuming 'dep' is the header for the departure time and 'day' is the header for the day.
-    const depIndex = headerRow.indexOf('dep');
-    const dayIndex = headerRow.indexOf('day');
+    const depIndex = headerRow.indexOf('Dep');
+    const dayIndex = headerRow.indexOf('Day');
 
     if (depIndex === -1 || dayIndex === -1) {
         return null; // Headers not found in the CSV file.
