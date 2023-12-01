@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hitchhiker.cc</title>
+
+    <!-- Include your common stylesheets and scripts here -->
+
     <style>
         body {
             margin: 0;
@@ -56,7 +58,7 @@
         }
 
         #content {
-            margin: 1200px;
+            margin: 20px;
         }
 
         #footer {
@@ -76,22 +78,31 @@
             border: none;
         }
     </style>
+
+    <script>
+        function loadTemplate() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('template').href = 'mobile.css'; // Update with your mobile stylesheet
+            } else {
+                document.getElementById('template').href = 'desktop.css'; // Update with your desktop stylesheet
+            }
+        }
+
+        window.onload = loadTemplate;
+        window.onresize = loadTemplate;
+    </script>
 </head>
-
 <body>
-
     <!-- Header -->
-    <div id="header">
+    <section id="header">
         <div id="title">
-            <h1>Hitchhiker.cc</h1>
+            <h1><b>Hitchhiker.cc</b></h1>
         </div>
         <div id="menu-links">
             <a href="#">Menu 1</a>
             <a href="#">Menu 2</a>
-<a href="#">Menu 3</a>
-<a href="#">Menu 4</a>
         </div>
-    </div>
+    </section>
 
     <!-- Title -->
     <div id="title">
@@ -132,6 +143,10 @@
         <p>Additional text or information goes here.</p>
     </div>
 
-</body>
 
+
+    <!-- Specify an initial template (can be common or either mobile/desktop) -->
+    <link id="template" rel="stylesheet" href="common.css">
+
+</body>
 </html>
