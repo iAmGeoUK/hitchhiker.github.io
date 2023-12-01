@@ -50,7 +50,9 @@ body {
 }
 
 #content {
-    margin: 20px;
+    font-size: 16px; /* Adjust the font size */
+    padding: 10px;   /* Adjust the padding */
+    margin: 100px;    /* Adjust the margin */
 }
 
 #footer {
