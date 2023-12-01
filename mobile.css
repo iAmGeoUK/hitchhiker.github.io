@@ -20,7 +20,7 @@ body {
 
 #title {
     margin-left: 20px;
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-weight: bold;
 }
 
@@ -67,7 +67,7 @@ section {
 }
 
 iframe {
-    width: 100%;
+    width: 75%;
     height: 558px;
     border: none;
 }
