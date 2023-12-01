@@ -52,7 +52,7 @@ body {
 #content {
     font-size: 16px; /* Adjust the font size */
     padding: 1px;   /* Adjust the padding */
-    margin: 1000px;    /* Adjust the margin */
+    margin: 10000px;    /* Adjust the margin */
 }
 
 #footer {
@@ -67,7 +67,7 @@ section {
 }
 
 iframe {
-    width: 40%;
+    width: 10%;
     height: 558px;
     border: none;
 }
