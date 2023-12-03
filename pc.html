@@ -1,11 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitchhiker.cc - Transport(PC version)</title>
 
-<html>
-	<head>
-		<title>Hitchhiker.cc (PC Version)</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=0, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <!-- Include your common stylesheets and scripts here -->
+
+ <script>
+        window.onload = function() {
+            // Scroll to the top of the page
+            window.scrollTo(0, 0);
+        };
+    </script>
+
 <!-- browser icons -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -22,72 +30,168 @@
   gtag('config', 'G-7L5GY1Y2HR');
 </script>
 
+
+<!-- STYLES -->
+
+
+    <style>
+   .boxed-text {
+      border: 2px solid #000; /* Border color (you can change to any color you want) */
+      padding: 10px; /* Padding inside the box */
+      display: inline-block; /* Ensures the box only takes up as much width as necessary */
+    }
+
+        #title {
+            margin-left: 20px;
+        }
+
+        #menu-links {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        #menu-links a {
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: text-decoration 0.3s;
+        }
+
+        #menu-links a:hover {
+            text-decoration: underline;
+        }
+
+        #updates {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #content {
+            margin: 100%;
+        }
+
+        #footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+    </style>
+
+    <script>
+        function loadTemplate() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('template').href = 'mobile.css'; // Update with your mobile stylesheet
+            } else {
+                document.getElementById('template').href = 'desktop.css'; // Update with your desktop stylesheet
+            }
+        }
+
+        window.onload = loadTemplate;
+        window.onresize = loadTemplate;
+    </script>
 </head>
-	<body class="is-preload">
+<body>
+    <!-- Header -->
+    <section id="header">
+        <div id="title">
+            <h1><b>Hitchhiker.cc</b></h1>
+        </div>
+        <div id="menu-links">
+            <a href="https://hitchhiker.cc">Transport</a>
+            <a href="https://hitchhiker.cc/app">Mobile App</a>
+	    <a href="https://hitchhiker.cc/pnb">PnB tool</a>
+        </div>
+    </section>
 
-		<!-- Header -->
-			<section id="header">
-				<div class="inner">
-					
-					<h1><b>Hitchhiker.cc</b><br />
-				</h1>
-					<p>Version: May 2023</p>
-<p><b>Mobile app now available (iOS/Android):</b> <a href="https://hitchhiker.cc/app">Click here to download</a></p>
-Functions even without internet connectivity.. including Paddington LL (finally!).
-					<ul class="actions special">
-						<li><a href="#one" class="button scrolly">Paddington to OCC</a></li>
-<li><a href="#two" class="button scrolly">OCC to Paddington</a></li></ul>
-				</div></section>
+    <!-- Title -->
+    <div id="title">
+        <h2>Work smarter, not harder</h2>
+    </div>
 
-		<!-- One -->
-			<section id="one" class="main style1 special">
-				<div class="container">
-					
-							<header class="major">
-								<h2>Paddington to OCC</h2> 
-<h5>WRONG TIME? <a href="index.html">Use mobile version</a> <b>|</b> <a href="#">Return to top menu</a></h5></header>
-<iframe width="558" height="504" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=D3D01E1A4946FB57%217423&authkey=!AJWyQ3FZML3SCe8&em=2&wdAllowInteractivity=False&ActiveCell='PC_Current'!A1&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false"></iframe>
-<iframe width="558" height="504" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=D3D01E1A4946FB57%217423&authkey=!AJWyQ3FZML3SCe8&em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='PC_Current'!A25&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false"></iframe>
+    <!-- Updates -->
+    <div id="updates">
+        <p>Latest updates: December 2023 timings for hitchhiker are now live (web and app).<br>
+This is the PC version. If timings are wrong, use <a href="index.html">Mobile version</a>.</p>
+    </div>
 
-						</div>
-					</div>
-				</div>
-			</section>
+<!-- ###CONTENT### -->
+    <!-- One -->
+    <section id="one">
+        <div class="container">
+            <header class="major">
+<h2><a href="#Pad2OCC">Pad to OCC</a> | <a href="#OCC2Pad">OCC to Pad</a><br><br><a name="Pad2OCC"></a><br>
+<h4>All timings are based on LTP. Consider using the App for offline use.</h4>
+<br>
 
-		<!-- Two -->
-			<section id="two" class="main style1 special">
-				<div class="container">
-					
-							
-						</div>
-						
-							<header class="major">
-								<h2>OCC to Paddington</h2>
-<h5>WRONG TIME? <a href="index.html">Use mobile version</a> <b>|</b> <a href="#">Return to top menu</a></h5></header>
-<iframe width="558" height="504" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=D3D01E1A4946FB57%217423&authkey=!AJWyQ3FZML3SCe8&em=2&wdAllowInteractivity=False&ActiveCell='PC_Sheet3'!A1&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false"></iframe>
-<iframe width="558" height="504" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=D3D01E1A4946FB57%217423&authkey=!AJWyQ3FZML3SCe8&em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='PC_Sheet3'!A25&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false"></iframe>
+    <h3><B><u>Paddington to OCC</u></B></h3>
+<h5>WRONG TIME? <a href="index.html">Use Mobile version</a> <b>|</b> <a href="#">Return to top menu</a></h5></header>
+<!--frame one-->
+<iframe width="558" height="700" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=D3D01E1A4946FB57%217717&authkey=!AHPqqUGJyELNgKA&em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='PC_current'!A4&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false"></iframe>
+        </div>
+    <a name="OCC2Pad"></a> </section>
 
+    <!-- Two -->
+    <section id="two">
+        <div class="container">
+            <header class="major">
+              <h3><B><u>OCC to Paddington</u></B></h3>
+                <h5>WRONG TIME? <a href="pc.html">Use PC version</a> <b>|</b> <a href="#">Return to top menu</a></h5>
+            </header>
+<!--frame two-->
+<iframe width="558" height="504" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=D3D01E1A4946FB57%217717&authkey=!AHPqqUGJyELNgKA&em=2&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='PC_Sheet3'!A4&wdInConfigurator=True&wdInConfigurator=True&edesNext=false&resen=false&ed1JS=false"></iframe>
 </div>
-					</div>
-				</div>
-			</section>
+    </section>
 
-		
+    <!-- Footer -->
+    <div id="footer">
+        <p>Created by <strong><a href="mailto:ismail.amerat@mtrel.co.uk?subject=Hitchhiker query" style="text-decoration: underline; color: white;">Ismail Amerat</a></strong>. <i>Life hacks for the rail.</i></p>
 
-		<!-- Footer -->
-			<section id="footer">
-					
-				<h5>Hitchhiker.cc is a DIY project and is provided as a <i>guide</i> only. Timings based on LTP diagrams and therefore may not be accurate.</h5>
-<h5>Created by Ismail Amerat | Design: HTML5 UP</h5>
-</ul></section>
+    </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
 
-	</body>
+
+    <!-- Specify an initial template (can be common or either mobile/desktop) -->
+    <link id="template" rel="stylesheet" href="common.css">
+
+<!-- Add this script at the end of your HTML body -->
+<script>
+    // Check if the page is fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        // Scroll to the top
+        window.scrollTo(0, 0);
+    });
+</script>
+
+<!-- temp fwd -->
+<script>
+var currentDate = new Date();
+
+var startDate = new Date('2023-01-01');
+var endDate = new Date('2023-12-10');   
+
+
+if (currentDate >= startDate && currentDate <= endDate) {
+    // Redirect to Google.com
+    window.location.href = 'https://hitchhiker.cc/old/pc.html';
+}
+</script>
+
+</body>
+
+
 </html>
