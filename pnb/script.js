@@ -6,20 +6,20 @@ function checkTime() {
     const timeDifference = endTime - startTime;
 
     const times = {
-        "Abbey Wood": 47,
+        "Abbey Wood": 51,
         "Ealing Broadway": 44,
         "Gidea Park Station": 62,
-        "Gidea Park CS": 42,
-        "Liverpool St": 46,
+        "Gidea Park CS": 52,
+        "Liverpool St": 43,
         "Maidenhead Cincom": 48,
         "Maidenhead CS": 47,
         "OCC": 57,
-        "Paddington GW": 48,
+        "Paddington GW": 52,
         "Paddington LL": 42,
         "Paddington GW*": 56,
         "Plumstead": 57,
         "Shenfield": 42,
-        "Shenfield CS": 49
+        "Shenfield CS": 56
     };
 
     const specifiedValue = times[location] * 60000;
