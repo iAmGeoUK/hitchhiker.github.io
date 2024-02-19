@@ -125,9 +125,7 @@
 
     <!-- Updates -->
     <div id="updates">
-        <p>Latest updates: December 2023 timings for hitchhiker are now live (web and app).
-<p>18/02/2024: GW timing updated during COS Shutdown
-</p>
+        <p>Latest updates: Driving parameters v2 have been added. Also check your <b>ARRIVAL</b> and <b>DEPARTURE</b> locations for more specific PnB times e.g arrive at CS but departing from Station platform</p>
     </div>
 
 <!-- ###CONTENT### -->
@@ -211,15 +209,20 @@
             <form id="time-form">
                 Arrival time: <input type="datetime-local" id="start-time">
                 Depart time: <input type="datetime-local" id="end-time">
-                Location:
+                Arrival location:
                 <select id="location">
                     <option value="Abbey Wood">Abbey Wood</option>
+<option value="ABW Bolthole">ABW Bolthole</option>
+<option value="ABW B/H to Plt">ABW B/H (Depart Plt)</option>
                     <option value="Ealing Broadway">Ealing Broadway</option>
                     <option value="Gidea Park Station">Gidea Park Station</option>
                     <option value="Gidea Park CS">Gidea Park CS</option>
+<option value="Gidea Park CS to Plt">Gidea Park CS (Depart Plt)</option>
                     <option value="Liverpool St">Liverpool St</option>
                     <option value="Maidenhead Cincom">Maidenhead Cincom</option>
                     <option value="Maidenhead CS">Maidenhead CS</option>
+<option value="Maidenhead Plt to CS">Maidenhead Station (Depart CS)</option>
+<option value="Maidenhead CS to Plt">Maidenhead CS (Depart Plt)</option>
                     <option value="OCC">OCC</option>
                     <option value="Paddington GW">Paddington GW</option>
                     <option value="Paddington LL">Paddington LL</option>
@@ -227,6 +230,7 @@
                     <option value="Plumstead">Plumstead</option>
                     <option value="Shenfield">Shenfield</option>
                     <option value="Shenfield CS">Shenfield CS</option>
+<option value="Shenfield CS to Plt">Shenfield CS (Depart Plt)</option>
                 </select>
                 <button type="button" onclick="checkTime()">Check Time</button>
                 <p id="message"></p>
@@ -237,7 +241,7 @@
     <!-- Include your JavaScript file here -->
     <script src="script.js"></script>
     <br>
-    <center>Noticed any errors with timings? <a href="mailto:ismail.amerat@mtrel.co.uk?subject=Hitchhiker PNB query">Message me</a>
+    <center>Noticed any errors with timings? <a href="mailto:ismail.amerat@mtrel.co.uk?subject=Hitchhiker PNB query">Message me</a> | Timings from <a href="pnb times v2.jpg" target="_blank">Driving diagramming parameters v2</a> 
     </section>
 
     <!-- Footer -->

@@ -7,12 +7,12 @@ function checkTime() {
 
     const times = {
         "Abbey Wood": 51,
-        "Abbey Wood Bolthole": 53,
-        "Abbey Wood B/H to Plt": 57,
+        "ABW Bolthole": 53,
+        "ABW B/H to Plt": 57,
         "Ealing Broadway": 44,
         "Gidea Park Station": 62,
         "Gidea Park CS": 52,
-        "Gidea Park Sidings to Plt": 57,
+        "Gidea Park CS to Plt": 57,
         "Liverpool St": 43,
         "Maidenhead Cincom": 48,
         "Maidenhead CS": 47,
