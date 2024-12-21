@@ -6,9 +6,9 @@ function checkTime() {
     const timeDifference = endTime - startTime;
 
     const times = {
-        "Abbey Wood": 51,
-        "ABW Bolthole": 53,
-        "ABW B/H to Plt": 57,
+        "Abbey Wood": 45,
+        "ABW Bolthole": 43,
+        "ABW B/H to Plt": 49,
         "Ealing Broadway": 44,
         "Gidea Park Station": 62,
         "Gidea Park CS": 52,
