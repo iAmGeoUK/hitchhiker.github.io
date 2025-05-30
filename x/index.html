@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitchhiker.cc - PnB tool</title>
+
+    <!-- Include your common stylesheets and scripts here -->
+
+ <script>
+        window.onload = function() {
+            // Scroll to the top of the page
+            window.scrollTo(0, 0);
+        };
+    </script>
+
+<!-- browser icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7L5GY1Y2HR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7L5GY1Y2HR');
+</script>
+
+
+<!-- STYLES -->
+
+
+    <style>
+   .boxed-text {
+      border: 2px solid #000; /* Border color (you can change to any color you want) */
+      padding: 10px; /* Padding inside the box */
+      display: inline-block; /* Ensures the box only takes up as much width as necessary */
+    }
+
+        #title {
+            margin-left: 20px;
+        }
+
+        #menu-links {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        #menu-links a {
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: text-decoration 0.3s;
+        }
+
+        #menu-links a:hover {
+            text-decoration: underline;
+        }
+
+        #updates {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #content {
+            margin: 100%;
+        }
+
+        #footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+    </style>
+
+    <script>
+        function loadTemplate() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('template').href = 'https://hitchhiker.cc/mobile.css'; // Update with your mobile stylesheet
+            } else {
+                document.getElementById('template').href = 'https://hitchhiker.cc/desktop.css'; // Update with your desktop stylesheet
+            }
+        }
+
+        window.onload = loadTemplate;
+        window.onresize = loadTemplate;
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <section id="header">
+        <div id="title">
+            <h1><b>Hitchhiker.cc</b></h1>
+        </div>
+        <div id="menu-links">
+            <a href="https://tdtools.co.uk/roster/transport.php?action=find">Transport</a>
+            <a href="https://hitchhiker.cc/app">Mobile App</a>
+	    <a href="https://hitchhiker.cc/pnb">PnB tool</a>
+        </div>
+    </section>
+
+    <!-- Title -->
+    <div id="title">
+        <h2>Work smarter, not harder</h2>
+    </div>
+
+    <!-- Updates -->
+    <div id="updates">
+        <p>Hitchhiker's original transport app discontinued. Use TDtools transport app for an alternative<br>
+<b>V2.1 timings updated (specifically ABW)</b></p>
+    </div>
+
+<!-- ###CONTENT### -->
+    <!-- One -->
+    <section id="one">
+       <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        select,
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-bottom: 1px solid black;
+            background-color: transparent;
+            color: black;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>PNB Checker tool</h1>
+        <p>Select your <b>arrival</b> time (actual) and <b>scheduled</b> departure time to verify your PNB for your location (either <i>pass</i> or <i>fail</i>).
+
+            <form id="time-form">
+                Arrival time: <input type="datetime-local" id="start-time">
+                Depart time: <input type="datetime-local" id="end-time">
+                Arrival location:
+                <select id="location">
+                    <option value="Abbey Wood">Abbey Wood</option>
+<option value="ABW Bolthole">ABW Bolthole</option>
+<option value="ABW B/H to Plt">ABW B/H (Depart Plt)</option>
+                    <option value="Ealing Broadway">Ealing Broadway</option>
+                    <option value="Gidea Park Station">Gidea Park Station</option>
+                    <option value="Gidea Park CS">Gidea Park CS</option>
+<option value="Gidea Park CS to Plt">Gidea Park CS (Depart Plt)</option>
+                    <option value="Liverpool St">Liverpool St</option>
+                    <option value="Maidenhead Cincom">Maidenhead Cincom</option>
+                    <option value="Maidenhead CS">Maidenhead CS</option>
+<option value="Maidenhead Plt to CS">Maidenhead Station (Depart CS)</option>
+<option value="Maidenhead CS to Plt">Maidenhead CS (Depart Plt)</option>
+                    <option value="OCC">OCC</option>
+                    <option value="Paddington GW">Paddington GW</option>
+                    <option value="Paddington LL">Paddington LL</option>
+                    <option value="Paddington GW*">Paddington GW (COS SHUTDOWN)</option>
+                    <option value="Plumstead">Plumstead</option>
+                    <option value="Shenfield">Shenfield</option>
+                    <option value="Shenfield CS">Shenfield CS</option>
+<option value="Shenfield CS to Plt">Shenfield CS (Depart Plt)</option>
+                </select>
+                <button type="button" onclick="checkTime()">Check Time</button>
+                <p id="message"></p>
+            </form>
+        </p>
+    </div>
+
+    <!-- Include your JavaScript file here -->
+    <script src="script.js"></script>
+    <br>
+    <center>Noticed any errors with timings? <a href="mailto:ismail.amerat@mtrel.co.uk?subject=Hitchhiker PNB query">Message me</a> | Timings from <a href="pnb.jpg" target="_blank">Driving diagramming parameters v2</a> 
+    </section>
+
+    <!-- Footer -->
+    <div id="footer">
+        <p>Created by <strong><a href="mailto:ismail.amerat@mtrel.co.uk?subject=Hitchhiker query" style="text-decoration: underline; color: white;">Ismail Amerat</a></strong>. <i>Life hacks for the rail.</i></p>
+
+    </div>
+
+
+
+    <!-- Specify an initial template (can be common or either mobile/desktop) -->
+    <link id="template" rel="stylesheet" href="common.css">
+
+<!-- Add this script at the end of your HTML body -->
+<script>
+    // Check if the page is fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        // Scroll to the top
+        window.scrollTo(0, 0);
+    });
+</script>
+</body>
+
+
+</html>
